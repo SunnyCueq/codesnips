@@ -1,6 +1,6 @@
 @echo off
 
-for /r "%cd%" %%g in (*.txt) do rename "%%g" "%%~ng.php"
+for /r "%cd%" %%g in (*.txt) do ren "%%g" "%%~ng.php"
 
 pause
 exit
