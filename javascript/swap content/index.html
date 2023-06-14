@@ -1,22 +1,35 @@
-<script type="text/javascript">
-function swapContent(num) {
-    for(i=0; obj = document.getElementById('content'+ i); ++i)
-        obj.style.display = 'none';
-    document.getElementById('content'+ num).style.display = 'block';
-    return false;
-}
-</script>
+<a href="#" class="swapper" data-num="0">0</a>
+<a href="#" class="swapper" data-num="1">1</a>
+<a href="#" class="swapper" data-num="2">2</a>
 
-<a href="#" title="xx" onclick="return swapContent(0)">0</a>
-<a href="#" title="xx" onclick="return swapContent(1)">1</a>
-<a href="#" title="xx" onclick="return swapContent(2)">2</a>
-
-<div id="content0" align="center">
+<div id="content0" class="content" style="display: block">
 Eingeblendet
 </div>
-<div id="content1" align="center" style="display: none">
-Ausgeblendet
+<div id="content1" class="content" style="display: none">
+Ausgeblendet 1
 </div>
-<div id="content2" align="center" style="display: none">
-Ausgeblendet
+<div id="content2" class="content" style="display: none">
+Ausgeblendet 2
 </div>
+
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    var swappers = document.querySelectorAll('.swapper');
+
+    for(var i = 0; i < swappers.length; i++) {
+        swappers[i].addEventListener('click', function(e) {
+            e.preventDefault();
+            var num = e.target.getAttribute('data-num');
+            swapContent(num);
+        });
+    }
+
+    function swapContent(num) {
+        var contents = document.querySelectorAll('.content');
+        for(var i = 0; i < contents.length; i++) {
+            contents[i].style.display = 'none';
+        }
+        document.getElementById('content' + num).style.display = 'block';
+    }
+});
+</script>
