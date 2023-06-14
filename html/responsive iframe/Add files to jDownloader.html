@@ -1,8 +1,18 @@
-<html>
-<form action="http://127.0.0.1:9666/flash/addcrypted2" target="hidden" method="post">
-   <input type="hidden" name="passwords" value="myPassword"> 
-   <input type="hidden" name="source" value="http://jdownloader.org/spielwiese">  
-   <input type="hidden" name="jk" value="function f() { return '31323334353637383930393837363534';}">
-   <input type="hidden" name="crypted" value="DRurBGEf2ntP7Z0WDkMP8e1ZeK7PswJGeBHCg4zEYXZSE3Qqxsbi5EF1KosgkKQ9SL8qOOUAI+eDPFypAtQS9A==">
-   <input type="submit" name="submit" value="Add Link to JDownloader">
-</form>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>JDownloader Link Hinzufügen</title>
+</head>
+<body>
+  <main>
+    <form action="http://127.0.0.1:9666/flash/addcrypted2" target="_blank" method="post">
+      <input type="hidden" name="passwords" value="myPassword"> 
+      <input type="hidden" name="source" value="http://jdownloader.org/spielwiese">  
+      <input type="hidden" name="jk" value="function f() { return '31323334353637383930393837363534';}">
+      <input type="hidden" name="crypted" value="DRurBGEf2ntP7Z0WDkMP8e1ZeK7PswJGeBHCg4zEYXZSE3Qqxsbi5EF1KosgkKQ9SL8qOOUAI+eDPFypAtQS9A==">
+      <button type="submit">Add Link to JDownloader</button>
+    </form>
+  </main>
+</body>
+</html>
