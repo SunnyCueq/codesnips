@@ -1,23 +1,26 @@
-<div class="intrinsic-container intrinsic-container-youtube">
-  <iframe src="https://www.youtube.com/embed/KMYrIi_Mt8A" allowfullscreen></iframe>
-</div>
-
-<style>
-.intrinsic-container {
-  position: relative;
-  height: 0;
-  overflow: hidden;
-}
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .responsive-youtube-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      height: 0;
+      overflow: hidden;
+    }
  
-.intrinsic-container-youtube {
-  padding-bottom: 56.25%; /* 16x9 Aspect Ratio */
-}
- 
-.intrinsic-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-</style>
+    .responsive-youtube-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="responsive-youtube-container">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/qIjv_YjRYBU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+</body>
+</html>
