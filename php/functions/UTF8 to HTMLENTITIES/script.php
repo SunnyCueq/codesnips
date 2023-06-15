@@ -1,3 +1,4 @@
+<?php
 function utf8_to_htmlentities($source)
 {
     $str = '';
