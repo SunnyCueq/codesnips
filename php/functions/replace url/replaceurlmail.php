@@ -1,3 +1,5 @@
+<?php
+
 function replace_url($text) {
   $text = " ".$text." ";
   $url_search_array = array(
@@ -16,3 +18,8 @@ function replace_url($text) {
   }
   return substr($text, 1, -1);
 }
+
+$text = 'Besuchen Sie unsere Webseite unter www.example.com oder schicken Sie uns eine E-Mail an info@example.com.';
+
+$replaced_text = replace_url($text);
+echo "Ersetzter Text: " . $replaced_text;
