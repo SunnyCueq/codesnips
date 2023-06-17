@@ -9,7 +9,7 @@ if (!ini_get('date.timezone')) {
 
 // Lädt die Feed-Klasse
 // Load the Feed class
-require_once 'src/Feed.php';
+require_once 'src/feed.php';
 
 // Lädt den RSS-Feed von 'https://phpfashion.com/feed/rss'
 // Load the RSS feed from 'https://phpfashion.com/feed/rss'
