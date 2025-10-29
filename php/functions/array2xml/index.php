@@ -1,7 +1,17 @@
 <?php
+declare(strict_types=1);
 
 // Funktion zur Umwandlung eines Arrays in eine XML-Struktur
 // Function to convert an array to an XML structure
+/**
+ * Convert an associative array into an XML string with root <root/>.
+ *
+ * Deutsch: Konvertiert ein assoziatives Array in einen XML-String mit Wurzel <root/>.
+ * Werte werden XML-konform escapt (ENT_XML1).
+ *
+ * @param array $array Eingabedaten
+ * @return string XML-String
+ */
 function array2xml(array $array): string
 {
     // Erstellen eines neuen XML-Elements mit der Wurzel "root"
@@ -24,7 +34,7 @@ function array2xml(array $array): string
         } else {
             // Wenn nein, fügen Sie das Element als Kind zum XML hinzu
             // If no, add the element as a child to the XML
-            $xml->addChild($key, $value);
+            $xml->addChild($key, htmlspecialchars((string)$value, ENT_QUOTES | ENT_XML1));
         }
     }
 
@@ -35,6 +45,15 @@ function array2xml(array $array): string
 
 // Rekursive Funktion zur Behandlung von verschachtelten Arrays
 // Recursive function to handle nested arrays
+/**
+ * Recursive helper to append array data to an XML node.
+ *
+ * Deutsch: Rekursiver Helfer, der Arraydaten an einen XML-Knoten anhängt.
+ *
+ * @param array $array Teilbaum
+ * @param SimpleXMLElement $parent Elternknoten
+ * @return void
+ */
 function array2xmlRecursive(array $array, SimpleXMLElement $parent): void
 {
     // Iteration über jedes Element im Array
@@ -49,7 +68,7 @@ function array2xmlRecursive(array $array, SimpleXMLElement $parent): void
         } else {
             // Wenn nein, fügen Sie das Element als Kind zum Elternelement hinzu
             // If no, add the element as a child to the parent
-            $parent->addChild($key, $value);
+            $parent->addChild($key, htmlspecialchars((string)$value, ENT_QUOTES | ENT_XML1));
         }
     }
 }

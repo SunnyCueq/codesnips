@@ -1,8 +1,22 @@
 <?php
+declare(strict_types=1);
 
     // Funktion, um einen Text auf eine bestimmte Länge zu kürzen
     // Function to truncate a text to a certain length
-    function truncate($text, $length = 100, $ending = '...', $exact = false, $considerHtml = false)
+    /**
+     * Truncate a text to a maximum length.
+     *
+     * Deutsch: Kürzt einen Text auf maximale Länge. Optional wortgenau (kein Wort in der Mitte schneiden)
+     * und mit definierbarem Abschluss (Standard '...'). Optional HTML berücksichtigen (sichtbarer Text zählt).
+     *
+     * @param string $text Eingabetext (UTF-8)
+     * @param int $length Maximale Länge inklusive $ending
+     * @param string $ending Suffix (z. B. ... oder …)
+     * @param bool $exact true = harte Kürzung, false = versuche am letzten Leerzeichen zu schneiden
+     * @param bool $considerHtml true = HTML-Tags ungezählt; sichtbarer Text kürzen
+     * @return string Gekürzter Text
+     */
+    function truncate(string $text, int $length = 100, string $ending = '...', bool $exact = false, bool $considerHtml = false): string
     {
         // Wenn wir HTML berücksichtigen sollen
         // If we should consider HTML

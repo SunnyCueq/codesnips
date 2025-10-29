@@ -1,24 +1,38 @@
 <?php
+declare(strict_types=1);
 
-function create_unique_filename($base, $file)
+/**
+ * Generate a unique filename in a directory by appending an incrementing suffix.
+ *
+ * Deutsch: Erzeugt einen eindeutigen Dateinamen in einem Verzeichnis, indem ein Zähler-Suffix
+ * ("_2", "_3", ...) angehängt wird, wenn der Zielname bereits existiert.
+ *
+ * @param string $baseDir Basisverzeichnis
+ * @param string $fileName gewünschter Dateiname (mit/ohne Erweiterung)
+ * @return string verfügbarer (neuer) Dateiname
+ */
+function create_unique_filename(string $baseDir, string $fileName): string
 {
-    $file_parts = pathinfo($file);
-    $ext = isset($file_parts['extension']) ? $file_parts['extension'] : '';
-    $name = isset($file_parts['filename']) ? $file_parts['filename'] : '';
+    $parts = pathinfo($fileName);
+    $ext = $parts['extension'] ?? '';
+    $name = $parts['filename'] ?? '';
 
-    if(!file_exists($base . '/' . $file)) {
-        return $file;
+    $baseDir = rtrim($baseDir, DIRECTORY_SEPARATOR);
+    $candidate = $fileName;
+    if (!file_exists($baseDir . DIRECTORY_SEPARATOR . $candidate)) {
+        return $candidate;
     }
 
-    $n = 2;
-    while(file_exists($base . '/' . $name . '_' . $n . '.' . $ext)) {
-        $n++;
-    }
-    return $name . '_' . $n . '.' . $ext;
+    $counter = 2;
+    do {
+        $candidate = $name . '_' . $counter . ($ext !== '' ? '.' . $ext : '');
+        $counter++;
+    } while (file_exists($os = $baseDir . DIRECTORY_SEPARATOR . $candidate));
+
+    return $candidate;
 }
 
+// Example
 $base = '/pfad/zum/verzeichnis';
 $file = 'test.txt';
-
-$unique_filename = create_unique_filename($base, $file);
-echo "Eindeutiger Dateiname: " . $unique_filename;
+echo 'Eindeutiger Dateiname: ' . create_unique_filename($base, $file);

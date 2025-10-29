@@ -1,8 +1,18 @@
 <?php
+declare(strict_types=1);
 
 // Funktion zur Erstellung eines Verzeichnisses mit bestimmten Berechtigungen
 // Function to create a directory with specific permissions
-function _mkdir($dir, $chmod = CHMOD_DIRS)
+/**
+ * Create a directory recursively with permissions.
+ *
+ * Deutsch: Erstellt ein Verzeichnis rekursiv mit Berechtigungen.
+ *
+ * @param string $dir Zielpfad
+ * @param int $chmod Modus (Standard: CHMOD_DIRS oder 0775)
+ * @return bool true bei Erfolg, sonst false
+ */
+function _mkdir(string $dir, int $chmod = 0775): bool
 {
     // Überprüfen, ob das Verzeichnis bereits existiert
     // Check if the directory already exists

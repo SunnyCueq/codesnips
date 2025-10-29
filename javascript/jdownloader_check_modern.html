@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JDownloader Status (Modern)</title>
+<body>
+  <p id="status">Checking JDownloader status…</p>
+  <script>
+    (async () => {
+      const statusEl = document.getElementById('status');
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 1500);
+      try {
+        // jdcheck.js toggles a global; but here we prefer a HEAD/GET check
+        const res = await fetch('http://127.0.0.1:9666/', { method: 'HEAD', signal: controller.signal, cache: 'no-store' });
+        clearTimeout(timeout);
+        if (res.ok || res.status === 405) {
+          statusEl.textContent = '(JDownloader is currently running)';
+        } else {
+          statusEl.textContent = '(JDownloader might not be running)';
+        }
+      } catch (e) {
+        statusEl.textContent = '(JDownloader is NOT running)';
+      }
+    })();
+  </script>
+</body>
+</html>
+
+

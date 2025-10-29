@@ -1,6 +1,15 @@
 <?php
+declare(strict_types=1);
 
-function rrmdir($src)
+/**
+ * Recursively delete a directory and its contents.
+ *
+ * Deutsch: Löscht ein Verzeichnis mitsamt Inhalt rekursiv.
+ *
+ * @param string $src Verzeichnispfad
+ * @return bool true bei Erfolg, sonst false
+ */
+function rrmdir(string $src): bool
 {
     if (is_dir($src)) {
         $files = array_diff(scandir($src), array('.', '..'));
@@ -11,7 +20,7 @@ function rrmdir($src)
             if (is_dir($path)) {
                 rrmdir($path);
             } else {
-                unlink($path);
+                @unlink($path);
             }
         }
 
@@ -23,6 +32,7 @@ function rrmdir($src)
             return false;
         }
     }
+    return false;
 }
 
 $installFolder = 'path/to/folder';

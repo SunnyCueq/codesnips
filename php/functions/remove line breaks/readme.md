@@ -1,17 +1,17 @@
-# PHP Funktion: removeLineBreak
+# removeLineBreak
 
-Diese Funktion in PHP hilft dabei, übermäßige Zeilenumbrüche aus einem gegebenen Textstring zu entfernen. 
+Deutsch (ausführlich):
+- Zweck: Normalisiert alle Zeilenumbrüche (`\r`, `\n`, `\r\n`, Unicode-Zeilenumbrüche) zu einem einheitlichen `\n` und entfernt führende/trailende Leerzeichen.
+- Signatur: `removeLineBreak(string $text): string`
+- Verhalten:
+  - Mehrere aufeinanderfolgende Umbrüche werden zu einem einzelnen `\n` zusammengefasst.
+  - Anfangs-/End-Whitespace wird durch `trim()` entfernt.
+- Beispiele:
+```php
+echo removeLineBreak("Hallo\r\n\r\nWelt"); // "Hallo\nWelt"
+```
 
-## Beschreibung
-
-Die `removeLineBreak` Funktion nimmt einen String als Eingabeparameter. Sie verwendet den regulären Ausdruck `/\R+/`, um alle Arten von Zeilenumbrüchen (\r, \n, \r\n) zu suchen und diese durch einen einzigen \n-Zeilenumbruch zu ersetzen. Schließlich wird die `trim` Funktion angewendet, um überflüssige Leerzeichen am Anfang und am Ende des Strings zu entfernen.
-
-----
-
-# PHP Function: removeLineBreak
-
-This PHP function helps to remove excessive line breaks from a given text string.
-
-## Description
-
-The `removeLineBreak` function takes a string as an input parameter. It uses the regular expression `/\R+/` to find all types of line breaks (\r, \n, \r\n) and replaces them with a single \n line break. Finally, the `trim` function is applied to remove any superfluous whitespace at the start and end of the string.
+English (detailed):
+- Purpose: Normalize all line breaks to a single `\n` and trim surrounding whitespace.
+- Signature: `removeLineBreak(string $text): string`
+- Behavior & examples mirror the German section.
