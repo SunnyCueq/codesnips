@@ -16,6 +16,66 @@ Ich konzentriere mich nicht auf eine bestimmte Programmiersprache, daher finden 
 
 ## Ordnerstruktur
 
+Kurzüberblick: Modernisierte, mehrsprachige Utility- und Script-Sammlung. Viele Snippets sind parallel in PHP (8.x), JavaScript/Node, Python, Bash, PowerShell sowie exotischeren Sprachen (Go, Rust, Ruby, Lua, AutoIt) verfügbar. Jede Funktion wird in ihrem Ordner zweisprachig (DE/EN) detailliert erklärt: Zweck, Signatur, Parameter, Rückgaben, Edge-Cases, Sicherheit, Beispiele.
+
+### Support-Matrix (Auszug)
+
+| Kategorie | PHP | Node.js | Python | Bash | PowerShell | Go | Rust | Ruby | Lua | AutoIt |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Dateigröße formatieren | ✓ | ✓ | ✓ | ✓ | – | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Zufallsname/ID | ✓ | ✓ | ✓ | ✓ | – | ✓ | ✓ | ✓ | ✓ | ✓ |
+| WLAN/Interface Switch | – | – | – | ✓ (nmcli) | ✓ | – | – | – | – | – |
+| JDownloader Check (lokal) | – | Browser/HTML | – | – | – | – | – | – | – | – |
+
+Hinweise:
+- AutoIt und Lua-Varianten sind best-effort; Zufallswerte sind dort standardmäßig nicht kryptographisch stark (für starke Zufallswerte bevorzugt Node/Python/Go/Rust/PHP).
+- Für Rust-Beispiele ist ein Cargo-Projekt empfohlen; die Snippets liegen als minimal lauffähige Beispiele vor.
+
+### Nutzung & Beispiele
+
+- PHP (8.x)
+  - Utilities liegen unter `php/functions/...` mit Beispielen am Dateiende und in der README des jeweiligen Ordners.
+  - Beispiel: Dateigröße
+    ```php
+    echo format_file_size(1234567890); // 1.15 GB
+    ```
+- Node.js
+  - CLI: `node nodejs/cli/random-and-size.mjs --help`
+  - Utils: `nodejs/utils/*`
+  - Beispiel:
+    ```bash
+    node nodejs/cli/random-and-size.mjs format-file-size 123456789 -p 2
+    ```
+- Python
+  - CLI (Typer): `python python/cli/main_typer.py --help`
+  - Utils: `python/utils/*`
+  - Beispiel:
+    ```bash
+    python python/cli/main_typer.py random-name 12 --letters-only --uppercase
+    ```
+- Go
+  - CLI (Cobra-Beispiel): `cd go/cli && go run . format-file-size 123456`
+  - Utils: `go/utils/*`
+- Rust
+  - CLI (Clap): `cd rust/cli && cargo run -- --help`
+  - Utils: `rust/utils/*`
+- Bash/PowerShell
+  - WLAN Switch: `bash/wlan_nmcli.sh wifi` bzw. `powershell/wlan/switch-interface.ps1 -Target Wi-Fi`
+- AutoIt
+  - Build: siehe `autoit/README.md` (GUI/CLI mit Aut2Exe)
+
+### Qualitäts- und Sicherheitsleitlinien
+
+- PHP 8.x mit `declare(strict_types=1)`, Typdeklarationen, robuste Fehlerbehandlung.
+- Sichere Zufälle (`random_bytes`, `random_int` bzw. kryptografische Generatoren in anderen Sprachen).
+- Text/HTML: sichere Escapes (`ENT_HTML5|ENT_SUBSTITUTE`), URL-Sanitizing, Entitäten-Handling.
+- Einheitliche UTF-8-Annahme, korrekte Pfadbehandlung, keine stillen Fehler.
+- Linter/Formatter-Empfehlungen: PHPCS/PHP-CS-Fixer, ESLint/Prettier, Black/Ruff, PSScriptAnalyzer.
+
+### Mehrsprachigkeit (DE/EN)
+
+- Jede README erklärt Funktionen in Deutsch und Englisch mit identischen Inhalten, Beispielen und Edge-Cases.
+
 Alle Skripte sind in Ober- und Unterordner unterteilt und jeweils beschrieben. Navigieren Sie durch die Verzeichnisse, um zu finden, was Sie brauchen.
 
 ## Beitragen
